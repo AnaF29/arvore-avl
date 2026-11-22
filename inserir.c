@@ -2,7 +2,7 @@
 #include "avl.h"
 
 struct No* inserir(struct No* no, int valor) {
-    // 1. Inserção BST normal
+    // Inserção BST normal
     if (no == NULL) {
         return novoNo(valor);
     }
