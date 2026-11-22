@@ -15,31 +15,31 @@ struct No* inserir(struct No* no, int valor) {
         return no; // valores duplicados não são permitidos
     }
 
-    // 2. Atualiza a altura do nó atual
+    // Atualiza a altura do nó atual
     no->altura = 1 + max(obterAltura(no->esq), obterAltura(no->dir));
 
-    // 3. Calcula o fator de balanceamento
+    // Calcula o fator de balanceamento
     int fb = obterFB(no);
 
-    // 4. Os 4 casos de desbalanceamento
+    // 4 casos de desbalanceamento
 
-    // Caso LL: esquerda da esquerda -> rotação simples à direita
+    // LL: esquerda da esquerda -> rotação simples à direita
     if (fb > 1 && valor < no->esq->valor) {
         return rotacionarDireita(no);
     }
 
-    // Caso RR: direita da direita -> rotação simples à esquerda
+    // RR: direita da direita -> rotação simples à esquerda
     if (fb < -1 && valor > no->dir->valor) {
         return rotacionarEsquerda(no);
     }
 
-    // Caso LR: direita da esquerda -> rotação dupla
+    // LR: direita da esquerda -> rotação dupla
     if (fb > 1 && valor > no->esq->valor) {
         no->esq = rotacionarEsquerda(no->esq);
         return rotacionarDireita(no);
     }
 
-    // Caso RL: esquerda da direita -> rotação dupla
+    // RL: esquerda da direita -> rotação dupla
     if (fb < -1 && valor < no->dir->valor) {
         no->dir = rotacionarDireita(no->dir);
         return rotacionarEsquerda(no);
